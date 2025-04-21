@@ -1,0 +1,50 @@
+{
+  "name": "solask",
+  "version": "1.0.0",
+  "description": "Developer-first SDK for natural language search of Solana dApps",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start:api": "node dist/api/server.js",
+    "dev:api": "nodemon src/api/server.ts",
+    "dev:sdk": "tsc -w",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "solana",
+    "sdk",
+    "natural language",
+    "web3",
+    "dapps"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/susmitasanti/SolAsk.git"
+  },
+  "author": "Shashwat Tripathi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/susmitasanti/SolAsk/issues"
+  },
+  "homepage": "https://github.com/susmitasanti/SolAsk#readme",
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.14.1",
+    "nodemon": "^3.1.9",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^1.98.0",
+    "axios": "^1.8.4",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "openai": "^4.95.1"
+  }
+}
