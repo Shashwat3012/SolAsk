@@ -11,6 +11,7 @@
   ],
   "scripts": {
     "build": "tsc",
+    "start": "ts-node src/server.ts",
     "start:api": "node dist/api/server.js",
     "dev:api": "nodemon src/api/server.ts",
     "dev:sdk": "tsc -w",
@@ -38,6 +39,7 @@
     "@types/express": "^5.0.1",
     "@types/node": "^22.14.1",
     "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   },
   "dependencies": {

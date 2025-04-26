@@ -176,5 +176,60 @@ VI. Network Information:
 
 
 
+## Info about the methods
+
+- getAccountInfo: Retrieve detailed information about a specific account.
+- getBalance: Obtain the balance of a particular account in lamports (the smallest unit of SOL).
+- getBlock: Fetch details of a confirmed block by its slot number.
+- getBlockCommitment: Get commitment information for a specific block.
+- getBlockHeight: Retrieve the current block height of the node.
+- getBlockProduction: Obtain information about block production for the current or a previous epoch.
+- getBlockTime: Fetch the estimated production time of a block.
+- getBlocks: Retrieve a list of confirmed blocks between two slot numbers.
+- getBlocksWithLimit: Get a list of confirmed blocks starting at a given slot, limited by a specified amount.
+- getClusterNodes: Obtain information about all the nodes participating in the cluster.
+- getEpochInfo: Retrieve information about the current epoch.
+- getEpochSchedule: Fetch the epoch schedule, detailing slot and epoch structure.
+- getFeeForMessage: Estimate the fee for a given message.
+- getFirstAvailableBlock: Get the slot of the first available block in the ledger.
+- getGenesisHash: Retrieve the genesis hash of the ledger.
+- getHealth: Check the health status of the node.
+- getHighestSnapshotSlot: Obtain the highest slot for which there is a snapshot.
+- getIdentity: Fetch the identity public key of the current node.
+- getInflationGovernor: Retrieve the current inflation governor parameters.
+- getInflationRate: Get the current inflation rate, current epoch.
+- getInflationReward: Fetch the inflation reward for a list of addresses.
+- getLargestAccounts: Addresses of the largest accounts by lamport balance.
+- getLatestBlockhash: Retrieve the latest blockhash.
+- getLeaderSchedule: Fetch the leader schedule for an epoch.
+- getMaxRetransmitSlot: Get the max slot seen from retransmit.
+- getMaxShredInsertSlot: Retrieve the max slot inserted from shreds.
+- getMinimumBalanceForRentExemption: Calculate the minimum balance needed to make an account exempt from rent.
+- getMultipleAccounts: Info about multiple accounts in a single request.
+- getProgramAccounts: All accounts owned by a specific program.
+- getRecentPerformanceSamples: Obtain a list of recent performance samples.
+- getRecentPrioritizationFees: Fetch recent prioritization fees.
+- getSignatureStatuses: Get the status of a list of signatures.
+- getSignaturesForAddress: Confirmed signatures for transactions involving an address.
+- getSlot: Fetch the current slot the node is processing.
+- getSlotLeader: Obtain the current slot leader.
+- getSlotLeaders: Retrieve the slot leaders for a range of slots.
+- getStakeMinimumDelegation: Get the minimum stake delegation amount.
+- getSupply: Fetch information about the total supply of SOL.
+- getTokenAccountBalance: Retrieve the token balance of a token account.
+- getTokenAccountsByDelegate: Get token accounts associated with a delegate.
+- getTokenAccountsByOwner: Fetch SPL Token accounts owned by a specific account.
+- getTokenLargestAccounts: Retrieve the largest accounts of a specific token type.
+- getTokenSupply: Get the total supply of a specific SPL token.
+- getTransaction: Returns transaction details for a confirmed transaction
+- getTransactionCount: Returns the current Transaction count from the ledger.
+- getVersion: Obtain the current software version of the node.
+- getVoteAccounts: Account info and associated stake for all the voting accounts in the current bank.
+- requestAirdrop: Request airdrop of lamports to a specific address (available only on test networks).
+- sendTransaction: Submit a signed transaction to the network.
+- simulateTransaction: Simulate a transaction to see its effects without broadcasting it.
+
+
+
 
 ![alt text](image.png)
