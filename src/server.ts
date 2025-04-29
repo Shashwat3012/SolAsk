@@ -4,6 +4,9 @@
 
 import express from "express";
 import { solaskQuery } from "./sdk/solaskSdk";
+import { configDotenv } from "dotenv";
+
+configDotenv({ path: "../.env" });
 
 const app = express();
 const port = 3000;

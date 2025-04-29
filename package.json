@@ -43,10 +43,11 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.24.0",
     "@solana/web3.js": "^1.98.0",
     "axios": "^1.8.4",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
-    "openai": "^4.95.1"
+    "openai": "^4.96.0"
   }
 }

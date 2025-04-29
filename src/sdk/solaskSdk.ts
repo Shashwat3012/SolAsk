@@ -48,14 +48,14 @@ import {
   // getMinimumBalanceForRentExemption,
   getSlot,
   getSupply,
-  // getTokenAccountBalance,
+  getTokenAccountBalance,
   getTransactionCount,
   getVersion,
   getVoteAccounts
 } from "../solana/solanaService";
 
 export async function solaskQuery(query: string): Promise<string> {
-  const parsed = parseUserQuery(query);
+  const parsed = await parseUserQuery(query);
 
   try {
     switch (parsed.action) {
@@ -134,10 +134,10 @@ export async function solaskQuery(query: string): Promise<string> {
         const supply = await getSupply();
         return `Supply Info: ${JSON.stringify(supply)}`;
 
-      // case "getTokenAccountBalance":
-      //   if (!parsed.tokenAccount) throw new Error("Token account missing for balance query.");
-      //   const tokenBalance = await getTokenAccountBalance(parsed.tokenAccount);
-      //   return `Token Account Balance: ${JSON.stringify(tokenBalance)}`;
+      case "getTokenAccountBalance":
+        if (!parsed.tokenAccount) throw new Error("Token account missing for balance query.");
+        const tokenBalance = await getTokenAccountBalance(parsed.tokenAccount);
+        return `Token Account Balance: ${JSON.stringify(tokenBalance)}`;
 
       case "getTransactionCount":
         const transactionCount = await getTransactionCount();

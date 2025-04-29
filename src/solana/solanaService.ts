@@ -156,12 +156,12 @@ export async function getSlot() {
 }
 
 
-// export async function getTokenAccountBalance(
-//   tokenAccountAddress: string
-// ): Promise<any> {
-//   const publicKey = new PublicKey(tokenAccountAddress);
-//   return await connection.getTokenAccountBalance(publicKey);
-// }
+export async function getTokenAccountBalance(
+  tokenAccountAddress: string
+): Promise<any> {
+  // const publicKey = new PublicKey(tokenAccountAddress);
+  return makeRpcRequest("getTokenAccountBalance", [tokenAccountAddress]);
+}
 
 export async function getTransactionCount() {
   return await makeRpcRequest("getTransactionCount");
