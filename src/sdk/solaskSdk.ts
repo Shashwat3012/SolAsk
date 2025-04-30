@@ -28,7 +28,8 @@
 
 // src/sdk/solaskSdk.ts
 
-import { parseUserQuery } from "./naturalLanguageParser";
+// import { parseUserQuery } from "./naturalLanguageParser";
+import { parseUserQuery } from "./nlpAgent";
 import { 
   getBalance,
   getBlock,
