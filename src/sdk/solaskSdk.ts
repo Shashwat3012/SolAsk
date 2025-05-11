@@ -30,6 +30,8 @@
 
 import { parseUserQuery } from "./naturalLanguageParser";
 // import { parseUserQuery } from "./nlpAgent";
+import { handleQuery } from "../solana/solanaNames";
+
 import { 
   getBalance,
   getBlock,
@@ -56,6 +58,18 @@ import {
 } from "../solana/solanaService";
 
 export async function solaskQuery(query: string): Promise<string> {
+  // before sending to llm, checking for use of SNS & resolving that here itself.
+  const newQuery = handleQuery(query);
+  // console.log("Balance: ", (await newQuery).balance);
+  // console.log("Domain: ", (await newQuery).domain);
+  // console.log("Pubkey: ", (await newQuery).pubkey);
+
+  query += ` where ${(await newQuery).pubkey} is the address of ${
+    (await newQuery).domain
+  }`;
+
+  console.log("Consoling the query before sending it to llm: ", query);
+  // sending this to llm
   const parsed = await parseUserQuery(query);
 
   try {
