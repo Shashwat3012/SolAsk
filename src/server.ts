@@ -5,6 +5,7 @@
 import express from "express";
 import { solaskQuery } from "./sdk/solaskSdk";
 import { configDotenv } from "dotenv";
+import { handleQuery } from "./solana/solanaNames";
 
 configDotenv({ path: "../.env" });
 
@@ -22,6 +23,22 @@ app.post("/ask", async (req: any, res: any) => {
 
   try {
     const answer = await solaskQuery(userInput);
+    res.json({ answer });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+app.post("/getSNS", async (req: any, res: any) => {
+  const userInput = req.body.query;
+
+  if (!userInput) {
+    return res.status(400).json({ error: "Missing 'query' in request body" });
+  }
+
+  try {
+    const answer = await handleQuery(userInput);
     res.json({ answer });
   } catch (error) {
     console.error(error);
