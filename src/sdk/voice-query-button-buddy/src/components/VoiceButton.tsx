@@ -11,7 +11,7 @@ interface VoiceButtonProps {
 
 const VoiceButton: React.FC<VoiceButtonProps> = ({ 
   onResult,
-  apiEndpoint = '/api/voice-query' 
+  apiEndpoint="http:localhost:3001/ask" 
 }) => {
   const [isListening, setIsListening] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);

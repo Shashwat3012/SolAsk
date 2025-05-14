@@ -11,7 +11,7 @@ interface VoiceQueryInterfaceProps {
 
 
 const VoiceQueryInterface: React.FC<VoiceQueryInterfaceProps> = ({ 
-  apiEndpoint = 'http://localhost:3001/ask' 
+  apiEndpoint 
 }) => {
 
 // 	useEffect(() => {

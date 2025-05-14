@@ -19,7 +19,7 @@ const Index = () => {
       )}
       
       <div className="w-full max-w-3xl">
-        <VoiceQueryInterface apiEndpoint="/api/voice-query" />
+        <VoiceQueryInterface  />
       </div>
     </div>
   );
