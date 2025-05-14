@@ -64,6 +64,8 @@ export async function solaskQuery(query: string): Promise<string> {
   // console.log("Domain: ", (await newQuery).domain);
   // console.log("Pubkey: ", (await newQuery).pubkey);
 
+  console.log("newquery: ", newQuery)
+
   query += ` where ${(await newQuery).pubkey} is the address of ${
     (await newQuery).domain
   }`;
@@ -77,7 +79,7 @@ export async function solaskQuery(query: string): Promise<string> {
       case "getBalance":
         if (!parsed.address) throw new Error("Address missing for balance query.");
         const balance = await getBalance(parsed.address);
-        return `The balance of ${parsed.address} is ${balance} lamports.`;
+        return `The balance of ${parsed.address} is ${balance.value} lamports.`;
 
       // case "getBlock":
       //   if (!parsed.block) throw new Error("Block number missing for block query.");
