@@ -6,11 +6,16 @@ import express from "express";
 import { solaskQuery } from "./sdk/solaskSdk";
 import { configDotenv } from "dotenv";
 import { handleQuery } from "./solana/solanaNames";
+import cors from "cors"; // ✅ import cors
+
 
 configDotenv({ path: "../.env" });
 
 const app = express();
-const port = 3000;
+const port = 3001;
+
+app.use(cors()); // ✅ enable CORS
+
 
 app.use(express.json());
 

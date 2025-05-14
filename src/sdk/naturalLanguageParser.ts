@@ -106,34 +106,22 @@ const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" }); // Using 
 
 export async function parseUserQuery(userQuery: string) {
   try {
-    const systemPrompt = `
-You are a Solana blockchain expert assistant.
+   const systemPrompt = `
+You are a parser that converts user queries about the Solana blockchain into a JSON command for a Solana SDK.
 
-Given a user's natural language query, identify the correct Solana RPC method they intend to call.
-This is the User Query that you have to understand and solve: ${userQuery}
-
-The allowed actions are:
-[getBalance, getBlock, getBlockHeight, getBlockProduction, getEpochInfo, getEpochSchedule, getFirstAvailableBlock, getGenesisHash, getHealth, getIdentity, getInflationRate, getLatestBlockhash, getLeaderSchedule, getMaxRetransmitSlot, getMaxShredInsertSlot, getMinimumBalanceForRentExemption, getSlot, getSupply, getTokenAccountBalance, getTransactionCount, getVersion, getVoteAccounts]
-
-Respond ONLY in valid JSON format like:
+Only respond with a JSON object using the following structure:
 
 {
-  "action": "ACTION_NAME",
-  "address": "OPTIONAL_IF_NEEDED",
-  "blockNumber": "OPTIONAL_IF_NEEDED",
-  "dataSize": "OPTIONAL_IF_NEEDED"
+  "action": "<required: one of getBalance, getBlock, getBlockHeight, getBlockProduction, getEpochInfo, getEpochSchedule, getFirstAvailableBlock, getGenesisHash, getHealth, getIdentity, getInflationRate, getLatestBlockhash, getLeaderSchedule, getMaxRetransmitSlot, getMaxShredInsertSlot, getSlot, getSupply, getTokenAccountBalance, getTransactionCount, getVersion, getVoteAccounts>",
+  "address": "<optional: Solana address if the action requires one>",
+  "tokenAccount": "<optional: token account address if needed>",
+  "block": "<optional: block number if needed>",
+  "dataSize": "<optional: number, for rent exemption queries>"
 }
 
-- If the query needs an address (e.g., balance), extract it.
-- If the query needs a block number (e.g., getBlock), extract it.
-- If not needed, omit optional fields.
-- DO NOT add any explanations or text, just the JSON object.
+Do not include any explanations. Just output the JSON.
 
-If you cannot understand the query or it's unrelated to Solana, respond with:
-
-{
-  "action": "unknown"
-}
+User Query: """${userQuery}"""
 `;
 
     // const result = await model.generateContent([

@@ -64,6 +64,8 @@ export async function solaskQuery(query: string): Promise<string> {
   // console.log("Domain: ", (await newQuery).domain);
   // console.log("Pubkey: ", (await newQuery).pubkey);
 
+  console.log("newquery: ", newQuery)
+
   query += ` where ${(await newQuery).pubkey} is the address of ${
     (await newQuery).domain
   }`;
