@@ -1,4 +1,4 @@
-import { Connection, clusterApiUrl, PublicKey } from '@solana/web3.js';
+import { Connection, PublicKey } from '@solana/web3.js';
 import { getDomainKey, NameRegistryState } from '@bonfida/spl-name-service';
 
 const connection = new Connection(
@@ -32,12 +32,7 @@ export async function handleQuery(input: string) {
     const domain = match[1];
     const pubkey = await resolveSolDomain(domain);
 
-    // if (!pubkey) return {`Error: Unable to resolve domain: ${domain}`};
     if (!pubkey) return { error: `Unable to resolve domain: ${domain}`};
-
-    // if (!pubkey) {
-    //     return "Error: Unable to resolve domain: ${domain}";
-    // }
 
     const balance = await getSolBalance(pubkey);
     return {

@@ -1,25 +1,4 @@
-// src/solana/solanaService.ts
-
-import axios from "axios";
-
-const SOLANA_RPC_URL = "https://api.mainnet-beta.solana.com"; // you can replace with your own node if needed
-
-// export async function getBalance(address: string): Promise<number> {
-//   try {
-//     const response = await axios.post(SOLANA_RPC_URL, {
-//       jsonrpc: "2.0",
-//       id: 1,
-//       method: "getBalance",
-//       params: [address],
-//     });
-
-//     return response.data.result.value;
-//   } catch (error) {
-//     console.error("Error fetching balance:", error);
-//     throw new Error("Failed to fetch balance from Solana.");
-//   }
-// }
-
+const SOLANA_RPC_URL = "https://api.mainnet-beta.solana.com"; 
 
 async function makeRpcRequest(method: string, params: any[] = []) {
   try {
@@ -93,9 +72,6 @@ export async function getProgramAccounts(programId: string) {
   return makeRpcRequest("getProgramAccounts", [programId]);
 }
 
-
-
-// added manually by shashwat
 export async function getBlock(blockNumber: number) {
   return makeRpcRequest("getBlock", [blockNumber]);
 }
@@ -132,7 +108,6 @@ export async function getInflationRate() {
   return await makeRpcRequest("getInflationRate");
 }
 
-
 export async function getLeaderSchedule() {
   return await makeRpcRequest("getLeaderSchedule");
 }
@@ -145,12 +120,6 @@ export async function getMaxShredInsertSlot(){
   return await makeRpcRequest("getMaxShredInsertSlot");
 }
 
-// export async function getMinimumBalanceForRentExemption(
-//   dataSize: number
-// ): Promise<number> {
-//   return await connection.getMinimumBalanceForRentExemption(dataSize);
-// }
-
 export async function getSlot() {
   return await makeRpcRequest("getSlot");
 }
@@ -159,7 +128,6 @@ export async function getSlot() {
 export async function getTokenAccountBalance(
   tokenAccountAddress: string
 ): Promise<any> {
-  // const publicKey = new PublicKey(tokenAccountAddress);
   return makeRpcRequest("getTokenAccountBalance", [tokenAccountAddress]);
 }
 

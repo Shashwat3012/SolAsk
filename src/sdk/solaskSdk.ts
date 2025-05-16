@@ -1,40 +1,8 @@
-// // src/sdk/solaskSdk.ts
-
-// import { parseUserQuery } from "./naturalLanguageParser";
-// import { getBalance } from "../solana/solanaService";
-
-// export async function solaskQuery(query: string): Promise<string> {
-//   const parsed = parseUserQuery(query);
-
-//   if (parsed.action === "getBalance" && parsed.address) {
-//     const balance = await getBalance(parsed.address);
-//     return `The balance of ${parsed.address} is ${balance} lamports.`;
-//   }
-
-//   return "Sorry, I could not understand your request.";
-// }
-
-
-
-
-// pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA
-
-
-
-
-
-
-
-
-// src/sdk/solaskSdk.ts
-
 import { parseUserQuery } from "./naturalLanguageParser";
-// import { parseUserQuery } from "./nlpAgent";
 import { handleQuery } from "../solana/solanaNames";
 
 import { 
   getBalance,
-  getBlock,
   getBlockHeight,
   getBlockProduction,
   getEpochInfo,
@@ -48,7 +16,6 @@ import {
   getLeaderSchedule,
   getMaxRetransmitSlot,
   getMaxShredInsertSlot,
-  // getMinimumBalanceForRentExemption,
   getSlot,
   getSupply,
   getTokenAccountBalance,
@@ -60,10 +27,6 @@ import {
 export async function solaskQuery(query: string): Promise<string> {
   // before sending to llm, checking for use of SNS & resolving that here itself.
   const newQuery = handleQuery(query);
-  // console.log("Balance: ", (await newQuery).balance);
-  // console.log("Domain: ", (await newQuery).domain);
-  // console.log("Pubkey: ", (await newQuery).pubkey);
-
   console.log("newquery: ", newQuery)
 
   query += ` where ${(await newQuery).pubkey} is the address of ${
@@ -80,11 +43,6 @@ export async function solaskQuery(query: string): Promise<string> {
         if (!parsed.address) throw new Error("Address missing for balance query.");
         const balance = await getBalance(parsed.address);
         return `The balance of ${parsed.address} is ${balance.value} lamports.`;
-
-      // case "getBlock":
-      //   if (!parsed.block) throw new Error("Block number missing for block query.");
-      //   const block = await getBlock(parsed.block);
-      //   return `Block ${parsed.block}: ${JSON.stringify(block)}`;
 
       case "getBlockHeight":
         const blockHeight = await getBlockHeight();
@@ -137,11 +95,6 @@ export async function solaskQuery(query: string): Promise<string> {
       case "getMaxShredInsertSlot":
         const maxShredInsertSlot = await getMaxShredInsertSlot();
         return `Max Shred Insert Slot: ${maxShredInsertSlot}`;
-
-      // case "getMinimumBalanceForRentExemption":
-      //   if (!parsed.dataSize) throw new Error("Data size missing for rent exemption query.");
-      //   const minBalance = await getMinimumBalanceForRentExemption(parsed.dataSize);
-      //   return `Minimum balance for rent exemption (${parsed.dataSize} bytes): ${minBalance} lamports`;
 
       case "getSlot":
         const slot = await getSlot();

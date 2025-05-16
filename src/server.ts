@@ -1,12 +1,8 @@
-// SDK Entry point
-
-// src/server.ts
-
 import express from "express";
 import { solaskQuery } from "./sdk/solaskSdk";
 import { configDotenv } from "dotenv";
 import { handleQuery } from "./solana/solanaNames";
-import cors from "cors"; // ✅ import cors
+import cors from "cors";
 
 
 configDotenv({ path: "../.env" });
@@ -14,7 +10,7 @@ configDotenv({ path: "../.env" });
 const app = express();
 const port = 3001;
 
-app.use(cors()); // ✅ enable CORS
+app.use(cors());
 
 
 app.use(express.json());
