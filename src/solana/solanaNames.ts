@@ -1,8 +1,15 @@
 import { Connection, PublicKey } from '@solana/web3.js';
 import { getDomainKey, NameRegistryState } from '@bonfida/spl-name-service';
+import { configDotenv } from "dotenv";
+import path from "path";
+
+configDotenv({ path: path.resolve(__dirname, "../../.env") });
+
+// console.log(`QUICKNODE API KEY: ${process.env.QUICKNODE_RPC_ENDPOINT}`);
+const RPC_ENDPOINT: string = process.env.QUICKNODE_RPC_ENDPOINT!;
 
 const connection = new Connection(
-  "https://crimson-long-market.solana-mainnet.quiknode.pro/167d58435b27d395750ff416301e2242f15316bb/",
+  RPC_ENDPOINT,
   "confirmed"
 );
 

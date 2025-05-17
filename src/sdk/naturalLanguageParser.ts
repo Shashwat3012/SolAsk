@@ -1,7 +1,13 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const genAI = new GoogleGenerativeAI("AIzaSyCkA0oz8RRe8OpB7bro6Xlg3vTZ7zp3yGI");
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" }); // Using gemini-pro as gemini-flash is not directly exposed yet
+import { configDotenv } from "dotenv";
+import path from "path";
+
+configDotenv({ path: path.resolve(__dirname, "../../.env") });
+
+// console.log(`GEMINI API KEY: ${process.env.GEMINI_API_KEY}`);
+const genAI = new GoogleGenerativeAI(`${process.env.GEMINI_API_KEY}`);
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 export async function parseUserQuery(userQuery: string) {
   try {
@@ -29,7 +35,7 @@ User Query: """${userQuery}"""
 
     const response = await result.response;
     const content = response.candidates?.[0]?.content?.parts?.[0]?.text;
-    console.log("Content: ", content);
+    // console.log("Content: ", content);
     if (!content) {
       throw new Error("Empty response from Gemini.");
     }
@@ -48,7 +54,7 @@ User Query: """${userQuery}"""
     }
 
     const parsed = JSON.parse(text);
-    console.log(parsed);
+    // console.log(parsed);
     return parsed;
   } catch (error) {
     console.error("Error parsing user query:", error);

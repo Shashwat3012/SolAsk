@@ -1,11 +1,12 @@
 import express from "express";
 import { solaskQuery } from "./sdk/solaskSdk";
-import { configDotenv } from "dotenv";
 import { handleQuery } from "./solana/solanaNames";
 import cors from "cors";
+import { configDotenv } from "dotenv";
+import path from "path";
 
+configDotenv({ path: path.resolve(__dirname, "../.env") });
 
-configDotenv({ path: "../.env" });
 
 const app = express();
 const port = 3001;
