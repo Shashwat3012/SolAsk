@@ -50,32 +50,65 @@ app.get("/", (req, res) => {
   res.send(`
     <html>
       <head>
-        <title>solask-sdk API</title>
+        <title>SolAsk SDK</title>
         <style>
           body {
             font-family: Arial, sans-serif;
-            padding: 20px;
-            background-color: #f5f5f5;
+            padding: 2rem;
+            background: #f9f9f9;
             color: #333;
-          }
-          pre {
-            background: #eee;
-            padding: 1em;
-            overflow-x: auto;
+            line-height: 1.6;
           }
           h1, h2, h3 {
             color: #222;
           }
+          pre {
+            background: #f0f0f0;
+            padding: 1em;
+            overflow-x: auto;
+            border-left: 4px solid #007acc;
+          }
+          code {
+            font-family: monospace;
+            background: #eee;
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+          }
+          a {
+            color: #007acc;
+            text-decoration: none;
+          }
         </style>
       </head>
       <body>
-        <h1>solask-sdk</h1>
+        <h1>SolAsk</h1>
+        <p>
+          SolAsk is a developer-first SDK designed for natural language search of Solana dApps.
+          It provides tools and utilities to interact with Solana blockchain data and integrates with
+          LLMs (Large Language Models) for natural language processing.
+        </p>
+
+        <h2>Features</h2>
+        <ul>
+          <li><strong>Solana Integration</strong>: Interact with Solana blockchain data using the SDK.</li>
+          <li><strong>Natural Language Processing</strong>: Leverage LLMs for natural language queries.</li>
+          <li><strong>Developer-Friendly</strong>: Includes utilities and core logic for easy integration into your projects.</li>
+        </ul>
+
+        <h2>Our SDKs</h2>
+        <p>We have developed 2 SDKs to help developers query complex blockchain data through text or voice:</p>
+        <ol>
+          <li><a href="https://github.com/Shashwat3012/SolAsk/blob/main/README.md#solask-sdk" target="_blank">solask-sdk</a></li>
+          <li><a href="https://github.com/Shashwat3012/SolAsk/blob/main/README.md#solask-voice-sdk" target="_blank">solask-voice-sdk</a></li>
+        </ol>
+
+        <h2>solask-sdk</h2>
         <p>The <code>solask-sdk</code> text module allows you to query Solana blockchain data using plain natural language inputs and get structured responses.</p>
 
-        <h2>📦 Installation</h2>
+        <h3>📦 Installation</h3>
         <pre><code>npm install solask-sdk</code></pre>
 
-        <h2>✨ Usage</h2>
+        <h3>✨ Usage</h3>
         <pre><code>import { ask } from 'solask-sdk';
 
 async function query() {
@@ -85,7 +118,7 @@ async function query() {
 
 query();</code></pre>
 
-        <h2>🔧 Using it in React Vite App</h2>
+        <h3>🔧 Using it in React Vite App</h3>
         <pre><code>import { useState } from "react";
 import { ask } from "solask-sdk";
 
@@ -117,16 +150,57 @@ const SolaskTextDemo = () => {
   return (
     &lt;div&gt;
       &lt;h2&gt;Solask SDK - Text Input Demo&lt;/h2&gt;
-      &lt;input
-        type="text"
-        placeholder="Ask something..."
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        disabled={loading}
-      /&gt;
-      &lt;button onClick={handleAsk} disabled={loading}&gt;
-        {loading ? "Loading..." : "Submit"}
-      &lt;/button&gt;
+      &lt;input type="text" value={text} onChange={(e) => setText(e.target.value)} /&gt;
+      &lt;button onClick={handleAsk}&gt;Submit&lt;/button&gt;
+      {response && &lt;p&gt;{response}&lt;/p&gt;}
+    &lt;/div&gt;
+  );
+};
+
+export default SolaskTextDemo;</code></pre>
+
+        <h3>🌐 Examples</h3>
+        <pre><code>await ask("How many NFTs are minted today?");
+await ask("List top 5 tokens on Solana by volume");</code></pre>
+
+        <h3>🧠 How does it work?</h3>
+        <ul>
+          <li>Natural language parsing (LLM backed)</li>
+          <li>Indexed Solana data endpoints</li>
+          <li>Entity detection & aggregation logic</li>
+        </ul>
+
+        <h2>solask-voice-sdk</h2>
+        <p>The <code>solask-voice-sdk</code> module allows users to speak their queries instead of typing, converting voice into text and querying Solana blockchain data in real-time.</p>
+
+        <h3>📦 Installation</h3>
+        <pre><code>npm install solask-voice-sdk</code></pre>
+
+        <h3>✨ Usage in React Vite app</h3>
+        <pre><code>import { useState } from "react";
+import VoiceButton from "solask-voice-sdk";
+
+const SolaskVoiceDemo = () => {
+  const [transcript, setTranscript] = useState("");
+  const [response, setResponse] = useState("");
+
+  const handleVoiceResult = (data, transcription) => {
+    if (transcription) setTranscript(transcription);
+    if (data?.answer) setResponse(data.answer);
+    console.log("Voice Result:", data);
+  };
+
+  return (
+    &lt;div&gt;
+      &lt;h2&gt;Solask Voice SDK Demo&lt;/h2&gt;
+      &lt;VoiceButton onResult={handleVoiceResult} /&gt;
+
+      {transcript && (
+        &lt;div&gt;
+          &lt;strong&gt;Transcription:&lt;/strong&gt;
+          &lt;p&gt;{transcript}&lt;/p&gt;
+        &lt;/div&gt;
+      )}
 
       {response && (
         &lt;div&gt;
@@ -138,23 +212,19 @@ const SolaskTextDemo = () => {
   );
 };
 
-export default SolaskTextDemo;
-</code></pre>
+export default SolaskVoiceDemo;</code></pre>
 
-        <h2>🌐 Examples</h2>
-        <pre><code>await ask("How many NFTs are minted today?");
-await ask("List top 5 tokens on Solana by volume");</code></pre>
-
-        <h2>🧠 How does it work?</h2>
+        <h3>🧠 How does it work?</h3>
         <ul>
-          <li>Natural language parsing (LLM backed)</li>
-          <li>Indexed Solana data endpoints</li>
-          <li>Entity detection & aggregation logic</li>
+          <li>Uses browser's speech-to-text engine.</li>
+          <li>Extracts query intent.</li>
+          <li>Fetches and formats the relevant data from Solana.</li>
         </ul>
       </body>
     </html>
   `);
 });
+
 
 app.listen(port, () => {
   console.log(`🚀 Solask server running at http://localhost:${port}`);
