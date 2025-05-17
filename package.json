@@ -27,14 +27,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/susmitasanti/SolAsk.git"
+    "url": "git+https://github.com/Shashwat3012/SolAsk.git"
   },
   "author": "Shashwat Tripathi",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/susmitasanti/SolAsk/issues"
+    "url": "https://github.com/Shashwat3012/SolAsk/issues"
   },
-  "homepage": "https://github.com/susmitasanti/SolAsk#readme",
+  "homepage": "https://github.com/Shashwat3012/SolAsk#readme",
   "devDependencies": {
     "@types/cors": "^2.8.18",
     "@types/express": "^5.0.1",
