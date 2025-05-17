@@ -10,8 +10,8 @@ SolAsk is a developer-first SDK designed for natural language search of Solana d
 
 ## Our SDKs
 We have developed 2 SDKs for helping developers to query complex blockchain data either through text or by voice:
-1. solask-sdk
-2. solask-voice-sdk
+1. [solask-sdk](https://github.com/Shashwat3012/SolAsk/blob/main/README.md#solask-sdk)
+2. [solask-voice-sdk](https://github.com/Shashwat3012/SolAsk/blob/main/README.md#solask-voice-sdk)
 
 ## solask-sdk
 
