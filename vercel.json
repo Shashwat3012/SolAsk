@@ -1,0 +1,21 @@
+{
+    "builds": [
+      {
+        "src": "server.ts",
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/ask",
+        "methods": ["POST"],
+        "dest": "/server.ts"
+      },
+      {
+        "src": "/getSNS",
+        "methods": ["POST"],
+        "dest": "/server.ts"
+      }
+    ]
+  }
+  
