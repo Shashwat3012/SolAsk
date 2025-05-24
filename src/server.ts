@@ -98,8 +98,8 @@ app.get("/", (req, res) => {
         <h2>Our SDKs</h2>
         <p>We have developed 2 SDKs to help developers query complex blockchain data through text or voice:</p>
         <ol>
-          <li><a href="https://github.com/Shashwat3012/SolAsk/blob/main/README.md#solask-sdk" target="_blank">solask-sdk</a></li>
-          <li><a href="https://github.com/Shashwat3012/SolAsk/blob/main/README.md#solask-voice-sdk" target="_blank">solask-voice-sdk</a></li>
+          <li><a href="https://www.npmjs.com/package/solask-sdk" target="_blank">solask-sdk</a></li>
+          <li><a href="https://www.npmjs.com/package/solask-voice-sdk" target="_blank">solask-voice-sdk</a></li>
         </ol>
 
         <h2>solask-sdk</h2>
